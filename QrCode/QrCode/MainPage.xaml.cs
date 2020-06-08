@@ -14,9 +14,11 @@ namespace QrCode
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        DialogService dialogService;
         public MainPage()
         {
             InitializeComponent();
+            dialogService = new DialogService();
         }
 
         private async void Button_OnClicked(object sender, EventArgs e) => await OpenScan();
@@ -29,6 +31,8 @@ namespace QrCode
             {
                 
                 var QrCode = result;
+                await dialogService.ShowMessage("QrCode", QrCode);
+
             }
         }
     }
